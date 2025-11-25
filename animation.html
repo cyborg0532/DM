@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Masterclass - Animated (Dark)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --primary-color: #ff5722; /* Deep Orange (Accent) */
+            --secondary-color: #1e1e1e; /* VERY Dark Gray (Main Background) */
+            --light-color: #f0f0f0; /* Light Gray (Main Text Color) */
+            --mid-dark-color: #252525; /* Mid-Dark Gray (Section Backgrounds) */
+            --card-dark-color: #333333; /* Darker Card Backgrounds */
+            --accent-color: #3498db; /* Blue (Secondary Accent) */
+            --font-stack: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            overflow-x: hidden;
+            background-color: var(--secondary-color); /* Dark Background */
+            color: var(--light-color); /* Light Text */
+        }
+        
+        /* General Section Styling */
+        .info-section {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .section-header {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--light-color); /* Light Header Text */
+        }
+
+        .section-subheader {
+            font-size: 1.1em;
+            margin-bottom: 50px;
+            color: #999999; /* Muted Light Gray */
+        }
+
+
+        /* --- NAVIGATION BAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* Changed to space-between to push the button to the right */
+            align-items: center;
+            padding: 15px 50px;
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            background-color: rgba(30, 30, 30, 0.85); /* Darker transparent background */
+            color: var(--light-color);
+            z-index: 100; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease; 
+        }
+        
+        .navbar:hover {
+            background-color: rgba(30, 30, 30, 1); 
+        }
+
+        .logo {
+            /* Removed margin-right: 50px; as space-between handles spacing */
+        }
+
+        .logo a {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo a:hover {
+            color: var(--light-color);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        /* NEW: Navbar Button Style (Mini CTA) */
+        .nav-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--light-color);
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 87, 34, 0.4);
+            text-transform: uppercase;
+        }
+        
+        .nav-button:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.5);
+        }
+
+
+        /* --- HERO SECTION --- */
+.hero-section {
+    padding-top: 80px; 
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    color: var(--light-color);
+    z-index: 1;
+    /* Removed the original gradient for a cleaner background image application */
+    background-color: #1e1e1e; /* Fallback to secondary-color */
+}
+
+/* NEW: Background Image Container */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 1. Set the Image Source */
+    background-image: url('https://images.pexels.com/photos/577769/pexels-photo-577769.jpeg'); /* Placeholder for a dark tech/digital image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* 2. Set Opacity: Using a darker color overlay for contrast/readability */
+    /* This method applies a dark semi-transparent overlay on top of the image */
+    background-blend-mode: overlay;
+    background-color: rgba(30, 30, 30, 0.9); /* Dark overlay to reduce image visibility */
+    
+    /* 3. Ensure the content (text/image) is above this background layer */
+    z-index: -1; 
+}
+
+
+/* NEW: Hero Left/Right Content Adjustment for readability (Optional but recommended) */
+.hero-left, .hero-right {
+    z-index: 2; /* Ensure content is on top of the pseudo-element background */
+}
+
+/* You can keep the gradientShift animation on a different element if desired, 
+    but it is removed here for simplicity with the background image. */
+        .hero-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 50px;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-left {
+            flex: 1;
+            text-align: left;
+            padding-right: 40px;
+        }
+
+        .hero-left h1 {
+            font-size: 3.8em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-left p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            font-weight: 400;
+            opacity: 0.9;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* --- HERO RIGHT (IMAGE) STYLING --- */
+        .hero-right {
+            flex: 1;
+            position: relative;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: floatImage 6s ease-in-out infinite; /* Apply floating animation */
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.03) translateY(-10px);
+        }
+
+        /* --- ANIMATION KEYFRAMES --- */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Keyframe for the floating image */
+        @keyframes floatImage {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-15px) translateX(5px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        /* --- CLICKABLE BUTTON --- */
+        .hero-button {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--light-color);
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero-button:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.5);
+        }
+
+        /* Secondary button style for less prominence (like in pricing) */
+        .secondary-button {
+            background-color: var(--mid-dark-color); /* Used darker background for dark theme */
+            border-color: var(--mid-dark-color);
+        }
+
+        .secondary-button:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* --- 1. COURSE MODULES SECTION STYLES --- */
+        .modules-section {
+            background-color: var(--mid-dark-color); /* Dark Section Background */
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-card {
+            padding: 30px;
+            border-radius: 10px;
+            background-color: var(--card-dark-color); /* Dark Card Background */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Darker shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .module-card i {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .module-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: var(--light-color); /* Light Text */
+        }
+        
+        .module-card p {
+            font-size: 0.95em;
+            color: #aaaaaa; /* Muted light gray for contrast */
+        }
+
+
+        /* --- 2. TESTIMONIALS SECTION STYLES --- */
+        .testimonial-section {
+            background-color: var(--secondary-color); /* Main Dark Background */
+            color: var(--light-color);
+        }
+
+        .testimonial-section .section-header {
+            color: var(--light-color);
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1); /* Light transparent card */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+
+        .testimonial-card p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+        
+        /* Removed PRICING SECTION STYLES */
+
+        /* --- 4. WEBINAR CTA SECTION STYLES --- */
+        .webinar-cta-section {
+            background: #34495e; 
+            color: var(--light-color);
+            padding: 100px 50px;
+            border-top: 5px solid var(--primary-color);
+            border-bottom: 5px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .webinar-cta-section .section-header {
+            color: var(--light-color);
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .webinar-cta-section .section-subheader {
+            color: var(--light-color);
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .webinar-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .webinar-detail-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .webinar-detail-item i {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* The CTA button style is shared with .hero-button, but this defines size/color */
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            font-size: 1.4em;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--secondary-color); /* Dark text on orange button */
+            background-color: var(--primary-color);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
+        }
+
+        /* --- 5. REGISTRATION FORM SECTION STYLES (NEW) --- */
+        .registration-form-section {
+            background-color: var(--card-dark-color); /* A slightly lighter dark section */
+            padding: 80px 50px;
+        }
+
+        .registration-form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: var(--mid-dark-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        
+        /* NEW STYLE: Text to highlight registration window */
+        .hold-seat-text {
+            color: var(--primary-color); 
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 2px dashed rgba(255, 87, 34, 0.3);
+            animation: bounce 1.5s infinite; /* Gentle bounce animation for urgency */
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--light-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #2c2c2c;
+            color: var(--light-color);
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+            outline: none;
+        }
+
+        .form-submit-button {
+            width: 100%;
+            display: block;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            background-color: var(--primary-color); /* Changed to primary color for CTA emphasis */
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+        }
+
+        .form-submit-button:hover {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        /* --- 6. FOOTER SECTION STYLES --- */
+        .site-footer {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            padding: 40px 50px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .footer-logo, .footer-links, .footer-contact {
+            padding: 20px;
+            min-width: 200px;
+        }
+
+        .footer-logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-contact p {
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9em;
+            text-align: center;
+            width: 100%;
+        }
+
+
+        /* --- MEDIA QUERIES for Responsiveness --- */
+        @media (max-width: 900px) {
+            .navbar { padding: 15px 20px; }
+            .hero-section { padding-top: 60px; height: auto; min-height: 80vh; } 
+            .hero-container { flex-direction: column; text-align: center; padding: 20px; }
+            .hero-left { padding-right: 0; margin-bottom: 50px; }
+            .hero-left h1 { font-size: 3em; }
+            .hero-left p { font-size: 1em; }
+            .hero-right { height: 400px; width: 100%; }
+            .hero-image { max-width: 80%; }
+            .footer-content { justify-content: center; }
+        }
+
+        @media (max-width: 600px) {
+            .navbar { 
+                /* Changed to space-between for mobile as well, keeping padding adjustments */
+                justify-content: space-between; 
+                padding: 10px 20px; 
+            }
+            .logo { margin-right: 0; }
+            
+            /* Responsive adjustments for the new button */
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 0.85em; /* Smaller font for mobile */
+                white-space: nowrap; /* Prevent "Register Now!" from wrapping too much */
+            }
+            
+            .hero-left h1 { font-size: 2.5em; }
+            .hero-left p { font-size: 0.9em; }
+            .hero-button { padding: 12px 30px; font-size: 1em; }
+            .hero-right { height: 300px; }
+            .hero-image { max-width: 90%; }
+            .info-section { padding: 60px 20px; }
+            .section-header { font-size: 2em; }
+            .webinar-cta-section { padding: 80px 20px; }
+            .webinar-cta-section .section-header { font-size: 2.5em; }
+            .webinar-details { flex-direction: column; gap: 15px; }
+            .cta-button { padding: 15px 30px; font-size: 1.2em; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="#">Digital<span>Marketing</span></a>
+        </div>
+        
+        <a href="#registration-form" class="nav-button">
+            Register Now!
+        </a>
+    </header>
+    
+    <main>
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-left">
+                    <h1>Master Digital Marketing. Launch Your Future.</h1>
+                    <p>Enroll in our certified classes and unlock the strategies used by top industry leaders. Start mastering SEO, Social Media, and Analytics today.</p>
+                    
+                    <a href="#registration-form" class="hero-button">
+                        Start Your Free Trial Today
+                    </a>
+                </div>
+                
+                <div class="hero-right">
+                    <img 
+                        src="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg" 
+                        alt="Digital Marketing Charts and Data Analysis" 
+                        class="hero-image"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <section id="modules" class="info-section modules-section">
+            <h2 class="section-header">What You Will Master</h2>
+            <p class="section-subheader">Our comprehensive curriculum is designed by industry experts to ensure job-ready skills.</p>
+            
+            <div class="modules-grid">
+                <div class="module-card">
+                    <i class="fas fa-search"></i>
+                    <h3>SEO & Content Strategy</h3>
+                    <p>Learn how to rank higher on Google, perform keyword research, and create engaging content that converts organic traffic.</p>
+                </div>
+                <div class="module-card">
+                    <i class="fab fa-facebook-f"></i>
+                    <h3>Social Media Marketing</h3>
+                    <p>Master paid and organic social strategies on platforms like Facebook, Instagram, and LinkedIn to build brand authority and drive sales.</p>
+                </div>
+                <div class="module-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data Analytics & Reporting</h3>
+                    <p>Dive deep into Google Analytics, interpret key metrics, and use data-driven insights to optimize campaigns for maximum ROI.</p>
+                </div>
+                <div class="module-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Marketing Automation</h3>
+                    <p>Build segmented lists, design high-converting email funnels, and automate sequences to nurture leads into loyal customers.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials" class="info-section testimonial-section">
+            <h2 class="section-header">Success Stories</h2>
+            <p class="section-subheader">Don't just take our word for it. See what our successful graduates say.</p>
+            
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left" style="color: var(--primary-color); font-size: 2em; margin-bottom: 10px;"></i>
+                <p>"Before DigitalPath, I was struggling to land clients. The SEO and Analytics modules completely transformed my approach. I doubled my agency's revenue in six months!"</p>
+                <div class="testimonial-author">- Sarah K., Marketing Consultant, New York</div>
+            </div>
+        </section>
+
+        <section id="webinar-cta" class="info-section webinar-cta-section">
+            <h2 class="section-header">Join Our Exclusive Live Webinar! 💰</h2>
+            <p class="section-subheader">Discover the **smartest ways to earn online** and get a sneak peek at our course material. Limited spots available!</p>
+            
+            <div class="webinar-details">
+                <div class="webinar-detail-item">
+                    <i class="fas fa-calendar-alt"></i> Next Session: **This Friday**
+                </div>
+                <div class="webinar-detail-item">
+                    <i class="fas fa-clock"></i> Time: **11:00 AM EST**
+                </div>
+                <div class="webinar-detail-item">
+                    <i class="fas fa-user-tie"></i> Host: **Jane Doe, CEO**
+                </div>
+            </div>
+            
+            <a href="#registration-form" class="cta-button">
+                Secure Your Free Seat Now!
+            </a>
+        </section>
+
+        <section id="registration-form" class="info-section registration-form-section">
+            <h2 class="section-header">Enroll Now and Start Learning!</h2>
+            <p class="section-subheader">Fill out the form below to register for the course or the free webinar.</p>
+            
+            <div class="registration-form-container">
+                <div class="hold-seat-text">
+                    <i class="fas fa-exclamation-triangle"></i> Hold Your Seat! Registration closes **TUESDAY**!
+                </div>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number (Optional)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city"><i class="fas fa-city"></i> City / Location</label>
+                        <input type="text" id="city" name="city" placeholder="Enter your city">
+                    </div>
+
+                    <button type="submit" class="form-submit-button">
+                        Reserve My Free Seat!
+                    </button>
+                </form>
+            </div>
+        </section>
+        </main>
+    
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="#">Digital<span>Path</span></a>
+                <p style="font-size: 0.9em; margin-top: 10px; color: var(--light-color);">Mastering the future, one click at a time.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">Quick Links</h4>
+                <ul>
+                    <li><a href="#modules">Course Modules</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#webinar-cta">Webinar</a></li>
+                    <li><a href="#registration-form">Enroll</a></li> 
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">Contact Us</h4>
+                <p><i class="fas fa-envelope"></i> support@digitalmarketing.com</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt"></i> Global Education Platform</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2025 DigitalPath Masterclass. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
